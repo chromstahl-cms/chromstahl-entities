@@ -34,6 +34,7 @@ uploadArchives {
         mavenDeployer {
             repository(url: "https://nexus.kloud.software/repository/maven-releases/") {
                 if (System.getenv('NEXUS_USERNAME') != null) {
+                    println "uploading archives from build job"
                     authentication(userName: System.getenv('NEXUS_USERNAME'), password: System.getenv('NEXUS_PASS'))
                 } else {
                     authentication(userName: "${project.property('kloudnexus.user')}", password: "${project.property('kloudnexus.password')}")
