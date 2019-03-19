@@ -10,7 +10,7 @@ import java.util.Date;
 @Table(name = "token")
 public class TokenJpaRecord implements SilverCommunication {
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JsonBackReference
     private UserJpaRecord user;
 

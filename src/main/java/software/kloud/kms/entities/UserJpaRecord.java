@@ -25,7 +25,7 @@ public class UserJpaRecord implements SilverCommunication {
     private String userName;
     @Pattern(regexp = Constants.PASSWORD_REGEX)
     private String password;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<TokenJpaRecord> tokens;
     @Pattern(regexp = Constants.EMAIL_REGEX)
