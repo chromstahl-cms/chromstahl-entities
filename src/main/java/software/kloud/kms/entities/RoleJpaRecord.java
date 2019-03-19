@@ -1,7 +1,5 @@
 package software.kloud.kms.entities;
 
-import software.kloud.kms.entities.util.KMSGrantedAuthorityAdapter;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -11,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "role")
-public class RoleJpaRecord implements KMSGrantedAuthorityAdapter {
+public class RoleJpaRecord {
 
     @OneToMany
     private final List<OperationJpaRecord> allowedOperationJpaRecords = new ArrayList<>();
@@ -38,10 +36,5 @@ public class RoleJpaRecord implements KMSGrantedAuthorityAdapter {
 
     public List<OperationJpaRecord> getAllowedOperations() {
         return allowedOperationJpaRecords;
-    }
-
-    @Override
-    public String getAuthority() {
-        return id;
     }
 }
