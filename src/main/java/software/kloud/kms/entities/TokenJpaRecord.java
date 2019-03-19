@@ -64,4 +64,9 @@ public class TokenJpaRecord implements SilverCommunication {
     public void setSilverIdentifier(String s) {
         this.silverIdentifier = s;
     }
+
+    @Override
+    public int prioritySaveOrder() {
+        return 0;
+    }
 }
