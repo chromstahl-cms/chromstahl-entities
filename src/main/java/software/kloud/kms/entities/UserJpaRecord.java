@@ -1,5 +1,7 @@
 package software.kloud.kms.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import software.kloud.kms.entities.util.Constants;
 import software.kloud.sc.SilverCommunication;
 
@@ -25,6 +27,7 @@ public class UserJpaRecord implements SilverCommunication {
     @Pattern(regexp = Constants.PASSWORD_REGEX)
     private String password;
     @OneToMany
+    @JsonManagedReference
     private List<TokenJpaRecord> tokens;
     @Pattern(regexp = Constants.EMAIL_REGEX)
     private String email;

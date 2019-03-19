@@ -7,7 +7,7 @@ apply plugin: 'maven'
 apply plugin: 'maven-publish'
 
 group 'software.kloud'
-version '1.0.5'
+version '1.0.6'
 
 sourceCompatibility = 1.8
 
@@ -22,6 +22,7 @@ dependencies {
     compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '2.1.5.RELEASE'
     compile group: 'javax.persistence', name: 'javax.persistence-api', version: '2.2'
     compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.9.8'
 
     compile group: 'software.kloud', name: 'silver-client-dep', version: '1.0'
 

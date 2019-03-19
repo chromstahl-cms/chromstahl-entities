@@ -1,5 +1,6 @@
 package software.kloud.kms.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import software.kloud.sc.SilverCommunication;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import java.util.Date;
 public class TokenJpaRecord implements SilverCommunication {
 
     @ManyToOne
+    @JsonBackReference
     private UserJpaRecord user;
 
     @Column(length = 512, unique = true)
