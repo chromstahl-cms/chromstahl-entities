@@ -1,0 +1,12 @@
+image: java_builder_docker_java12
+
+matrix:
+  - env: TEXT=howdy
+  - env: TEXT=hello
+
+before-install:
+  - sudo apt-get -yqq update
+install:
+  - sudo apt-get install -yqq cowsay
+script:
+  - /usr/games/cowsay $TEXT
