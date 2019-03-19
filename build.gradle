@@ -7,7 +7,7 @@ apply plugin: 'maven'
 apply plugin: 'maven-publish'
 
 group 'software.kloud'
-version '1.0.8'
+version '1.0.9'
 
 sourceCompatibility = 1.8
 
@@ -34,6 +34,19 @@ uploadArchives {
         mavenDeployer {
             repository(url: "https://nexus.kloud.software/repository/maven-releases/") {
                 authentication(userName: "${project.property('kloudnexus.user')}", password: "${project.property('kloudnexus.password')}")
+            }
+            pom.version = "$version"
+            pom.artifactId = "$rootProject.name"
+            pom.groupId = "software.kloud"
+        }
+    }
+}
+
+uploadArchivesRemote {
+    repositories {
+        mavenDeployer {
+            repository(url: "https://nexus.kloud.software/repository/maven-releases/") {
+                authentication(userName: System.getenv('NEXUS_USERNAME'), password: System.getenv('NEXUS_PASS'))
             }
             pom.version = "$version"
             pom.artifactId = "$rootProject.name"
