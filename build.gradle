@@ -33,20 +33,11 @@ uploadArchives {
     repositories {
         mavenDeployer {
             repository(url: "https://nexus.kloud.software/repository/maven-releases/") {
-                authentication(userName: "${project.property('kloudnexus.user')}", password: "${project.property('kloudnexus.password')}")
-            }
-            pom.version = "$version"
-            pom.artifactId = "$rootProject.name"
-            pom.groupId = "software.kloud"
-        }
-    }
-}
-
-uploadArchivesRemote {
-    repositories {
-        mavenDeployer {
-            repository(url: "https://nexus.kloud.software/repository/maven-releases/") {
-                authentication(userName: System.getenv('NEXUS_USERNAME'), password: System.getenv('NEXUS_PASS'))
+                if (System.getenv('NEXUS_USERNAME') != null) {
+                    authentication(userName: System.getenv('NEXUS_USERNAME'), password: System.getenv('NEXUS_PASS'))
+                } else {
+                    authentication(userName: "${project.property('kloudnexus.user')}", password: "${project.property('kloudnexus.password')}")
+                }
             }
             pom.version = "$version"
             pom.artifactId = "$rootProject.name"
