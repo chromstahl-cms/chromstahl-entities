@@ -21,15 +21,15 @@ public class UserJpaRecord implements SilverCommunication {
     @Basic(optional = false)
     @Column(name = "id", unique = true)
     private Integer id;
-    @Size(min = 3)
+    @Size(min = 3, message = "Username must be at least 3 characters long")
     @Column(unique = true)
     private String userName;
-    @Pattern(regexp = Constants.PASSWORD_REGEX)
+    @Pattern(regexp = Constants.PASSWORD_REGEX, message = "Password does not satisfy the requirements")
     private String password;
     @OneToMany
     @JsonManagedReference
     private List<TokenJpaRecord> tokens;
-    @Pattern(regexp = Constants.EMAIL_REGEX)
+    @Pattern(regexp = Constants.EMAIL_REGEX, message = "Email not a valid Email")
     private String email;
     @Column(name = "silverIdentifier", length = 300)
     private String silverIdentifier;
