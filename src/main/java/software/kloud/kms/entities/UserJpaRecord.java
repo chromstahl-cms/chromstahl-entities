@@ -13,7 +13,7 @@ import java.util.List;
 @Entity
 @Table(name = "user")
 public class UserJpaRecord implements SilverCommunication {
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private final List<RoleJpaRecord> roleJpaRecords = new ArrayList<>();
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

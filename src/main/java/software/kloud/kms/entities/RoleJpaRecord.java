@@ -1,9 +1,6 @@
 package software.kloud.kms.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +8,7 @@ import java.util.List;
 @Table(name = "role")
 public class RoleJpaRecord {
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private final List<OperationJpaRecord> allowedOperationJpaRecords = new ArrayList<>();
     @Id
     private String id;
