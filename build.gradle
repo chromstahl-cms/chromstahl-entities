@@ -7,7 +7,7 @@ apply plugin: 'maven'
 apply plugin: 'maven-publish'
 
 group 'software.kloud'
-version '1.0.13'
+version '1.0.14'
 
 sourceCompatibility = 1.8
 
@@ -23,6 +23,7 @@ dependencies {
     compile group: 'javax.persistence', name: 'javax.persistence-api', version: '2.2'
     compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.9.8'
+    compile group: 'org.hibernate', name: 'hibernate-annotations', version: '3.5.6-Final'
 
     compile group: 'software.kloud', name: 'silver-client-dep', version: '1.0.1'
 

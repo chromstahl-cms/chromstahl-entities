@@ -1,5 +1,8 @@
 package software.kloud.kms.entities;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +11,8 @@ import java.util.List;
 @Table(name = "role")
 public class RoleJpaRecord {
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany()
+    @LazyCollection(LazyCollectionOption.FALSE)
     private final List<OperationJpaRecord> allowedOperationJpaRecords = new ArrayList<>();
     @Id
     private String id;

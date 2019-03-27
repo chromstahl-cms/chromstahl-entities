@@ -1,6 +1,8 @@
 package software.kloud.kms.entities;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import software.kloud.kms.entities.util.Constants;
 import software.kloud.sc.SilverCommunication;
 
@@ -13,7 +15,8 @@ import java.util.List;
 @Entity
 @Table(name = "user")
 public class UserJpaRecord implements SilverCommunication {
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany()
+    @LazyCollection(LazyCollectionOption.FALSE)
     private final List<RoleJpaRecord> roleJpaRecords = new ArrayList<>();
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +28,8 @@ public class UserJpaRecord implements SilverCommunication {
     private String userName;
     @Pattern(regexp = Constants.PASSWORD_REGEX, message = "Password does not satisfy the requirements")
     private String password;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JsonManagedReference
     private List<TokenJpaRecord> tokens;
     @Pattern(regexp = Constants.EMAIL_REGEX, message = "Email not a valid Email")
