@@ -1,6 +1,5 @@
 package software.kloud.kms.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import software.kloud.kms.entities.util.Constants;
 import software.kloud.sc.SilverCommunication;
@@ -26,7 +25,7 @@ public class UserJpaRecord implements SilverCommunication {
     private String userName;
     @Pattern(regexp = Constants.PASSWORD_REGEX, message = "Password does not satisfy the requirements")
     private String password;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<TokenJpaRecord> tokens;
     @Pattern(regexp = Constants.EMAIL_REGEX, message = "Email not a valid Email")
@@ -50,6 +49,11 @@ public class UserJpaRecord implements SilverCommunication {
     @Override
     public void setSilverIdentifier(String s) {
         silverIdentifier = s;
+    }
+
+    @Override
+    public int prioritySaveOrder() {
+        return 1;
     }
 
     public List<RoleJpaRecord> getRoleJpaRecords() {

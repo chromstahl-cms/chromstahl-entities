@@ -10,7 +10,7 @@ import java.util.Date;
 @Table(name = "token")
 public class TokenJpaRecord implements SilverCommunication {
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JsonBackReference
     private UserJpaRecord user;
 
@@ -63,5 +63,10 @@ public class TokenJpaRecord implements SilverCommunication {
     @Override
     public void setSilverIdentifier(String s) {
         this.silverIdentifier = s;
+    }
+
+    @Override
+    public int prioritySaveOrder() {
+        return 0;
     }
 }

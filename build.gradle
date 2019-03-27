@@ -7,7 +7,7 @@ apply plugin: 'maven'
 apply plugin: 'maven-publish'
 
 group 'software.kloud'
-version '1.0.7'
+version '1.0.10'
 
 sourceCompatibility = 1.8
 
@@ -24,7 +24,7 @@ dependencies {
     compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.9.8'
 
-    compile group: 'software.kloud', name: 'silver-client-dep', version: '1.0'
+    compile group: 'software.kloud', name: 'silver-client-dep', version: '1.0.1'
 
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
@@ -33,7 +33,12 @@ uploadArchives {
     repositories {
         mavenDeployer {
             repository(url: "https://nexus.kloud.software/repository/maven-releases/") {
-                authentication(userName: "${project.property('kloudnexus.user')}", password: "${project.property('kloudnexus.password')}")
+                if (System.getenv('NEXUS_USERNAME') != null) {
+                    println "uploading archives from build job"
+                    authentication(userName: System.getenv('NEXUS_USERNAME'), password: System.getenv('NEXUS_PASS'))
+                } else {
+                    authentication(userName: "${project.property('kloudnexus.user')}", password: "${project.property('kloudnexus.password')}")
+                }
             }
             pom.version = "$version"
             pom.artifactId = "$rootProject.name"
