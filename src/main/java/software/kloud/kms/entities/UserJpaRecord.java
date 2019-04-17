@@ -17,7 +17,7 @@ import java.util.List;
 public class UserJpaRecord implements SilverCommunication {
     @OneToMany()
     @LazyCollection(LazyCollectionOption.FALSE)
-    private final List<RoleJpaRecord> roleJpaRecords = new ArrayList<>();
+    private List<RoleJpaRecord> roleJpaRecords = new ArrayList<>();
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -62,6 +62,10 @@ public class UserJpaRecord implements SilverCommunication {
 
     public List<RoleJpaRecord> getRoleJpaRecords() {
         return roleJpaRecords;
+    }
+
+    public void setRoleJpaRecords(List<RoleJpaRecord> roleJpaRecords) {
+        this.roleJpaRecords = roleJpaRecords;
     }
 
     public String getUserName() {
