@@ -17,6 +17,7 @@ import java.util.List;
 public class UserJpaRecord implements SilverCommunication {
     @OneToMany()
     @LazyCollection(LazyCollectionOption.FALSE)
+    @JsonManagedReference
     private List<RoleJpaRecord> roleJpaRecords = new ArrayList<>();
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

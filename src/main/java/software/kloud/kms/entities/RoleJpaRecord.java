@@ -1,5 +1,6 @@
 package software.kloud.kms.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -17,6 +18,7 @@ public class RoleJpaRecord {
     @Id
     private String id;
     @OneToMany
+    @JsonBackReference
     private List<UserJpaRecord> userJpaRecordList;
 
     public RoleJpaRecord() {
