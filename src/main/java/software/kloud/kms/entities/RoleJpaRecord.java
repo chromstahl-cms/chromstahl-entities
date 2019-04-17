@@ -30,6 +30,11 @@ public class RoleJpaRecord {
         this.allowedOperationJpaRecords = List.of(operations);
     }
 
+    public RoleJpaRecord(String id, List<OperationJpaRecord> allowedOperationJpaRecords) {
+        this.allowedOperationJpaRecords = allowedOperationJpaRecords;
+        this.id = id;
+    }
+
     public String getId() {
         return id;
     }
