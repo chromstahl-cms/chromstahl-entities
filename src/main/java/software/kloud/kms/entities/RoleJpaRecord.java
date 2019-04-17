@@ -13,11 +13,20 @@ public class RoleJpaRecord {
 
     @OneToMany()
     @LazyCollection(LazyCollectionOption.FALSE)
-    private final List<OperationJpaRecord> allowedOperationJpaRecords = new ArrayList<>();
+    private List<OperationJpaRecord> allowedOperationJpaRecords = new ArrayList<>();
     @Id
     private String id;
     @OneToMany
     private List<UserJpaRecord> userJpaRecordList;
+
+    public RoleJpaRecord() {
+    }
+
+    public RoleJpaRecord(String id, UserJpaRecord user, OperationJpaRecord ...operations) {
+        this.id = id;
+        this.userJpaRecordList = List.of(user);
+        this.allowedOperationJpaRecords = List.of(operations);
+    }
 
     public String getId() {
         return id;
