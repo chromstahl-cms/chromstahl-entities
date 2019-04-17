@@ -12,7 +12,7 @@ import java.util.List;
 @Table(name = "role")
 public class RoleJpaRecord {
 
-    @OneToMany()
+    @OneToMany(cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<OperationJpaRecord> allowedOperationJpaRecords = new ArrayList<>();
     @Id
