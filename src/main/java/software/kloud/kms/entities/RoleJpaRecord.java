@@ -17,7 +17,7 @@ public class RoleJpaRecord {
     private List<OperationJpaRecord> allowedOperationJpaRecords = new ArrayList<>();
     @Id
     private String id;
-    @OneToMany
+    @ManyToMany
     @JsonBackReference
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<UserJpaRecord> userJpaRecordList;
