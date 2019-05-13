@@ -19,6 +19,7 @@ public class RoleJpaRecord {
     private String id;
     @OneToMany
     @JsonBackReference
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<UserJpaRecord> userJpaRecordList;
 
     public RoleJpaRecord() {
